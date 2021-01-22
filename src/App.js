@@ -1,35 +1,25 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 // import * as BooksAPI from './BooksAPI'
 import "./App.css";
 import Home from "./Home.js";
+import SearchPage from "./Searchpage";
+import { Switch, Route } from "react-router-dom";
 
 class BooksApp extends React.Component {
-	state = {
-		showSearchPage: true,
-	};
-
 	render() {
 		return (
 			<div className='app'>
-				{this.state.showSearchPage ? (
-					<div className='search-books'>
-						<div className='search-books-bar'>
-							<button
-								className='close-search'
-								onClick={() => this.setState({ showSearchPage: false })}>
-								Close
-							</button>
-							<div className='search-books-input-wrapper'>
-								<input type='text' placeholder='Search by title or author' />
-							</div>
-						</div>
-						<div className='search-books-results'>
-							<ol className='books-grid' />
-						</div>
-					</div>
-				) : (
-					<Home />
-				)}
+				<BrowserRouter>
+					<Switch>
+						<Route path='/search'>
+							<SearchPage />
+						</Route>
+						<Route path='/'>
+							<Home />
+						</Route>
+					</Switch>
+				</BrowserRouter>
 			</div>
 		);
 	}

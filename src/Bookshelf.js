@@ -11,20 +11,22 @@ class BookShelf extends Component {
 	}
 
 	updateCollection = () => {
-		getAll().then((res) => {
-			const newRes = res.map((book) => {
-				return {
-					authors: book.authors,
-					shelf: book.shelf,
-					title: book.title,
-					image: book.imageLinks,
-					id: book.id,
-				};
-			});
-			this.setState((prev) => ({
-				bookShelfCollection: newRes,
-			}));
-		});
+		getAll()
+			.then((res) => {
+				const newRes = res.map((book) => {
+					return {
+						authors: book.authors,
+						shelf: book.shelf,
+						title: book.title,
+						imageLinks: book.imageLinks,
+						id: book.id,
+					};
+				});
+				this.setState((prev) => ({
+					bookShelfCollection: newRes,
+				}));
+			})
+			.catch((err) => console.log(err));
 	};
 	componentDidMount() {
 		//getting the state of allBooks when component is mounted
@@ -37,9 +39,11 @@ class BookShelf extends Component {
 	};
 	moveBook = (event) => {
 		const idObj = event.target.name;
-		update({ id: idObj }, event.target.value).then((res) => {
-			this.updateCollection();
-		});
+		update({ id: idObj }, event.target.value)
+			.then((res) => {
+				this.updateCollection();
+			})
+			.catch((err) => console.log(err));
 	};
 
 	render() {
