@@ -20,7 +20,11 @@ const ShelfRow = (props) => {
 												backgroundImage: `url("${book.image.thumbnail}")`,
 											}}
 										/>
-										<BookshelfSelect />
+										<BookshelfSelect
+											sShelf={book.shelf}
+											moveBook={props.moveBook}
+											id={book.id}
+										/>
 									</div>
 									<div className='book-title'>{book.title}</div>
 									<div className='book-authors'>{book.authors}</div>

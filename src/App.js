@@ -5,7 +5,7 @@ import Home from "./Home.js";
 
 class BooksApp extends React.Component {
 	state = {
-		showSearchPage: false,
+		showSearchPage: true,
 	};
 
 	render() {
